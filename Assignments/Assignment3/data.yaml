@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 11
+names: ['bicycle', 'bus', 'car', 'motorcycle', 'no_entry_sign', 'pedestrian', 'stop sign', 'traffic sign', 'traffic_light', 'truck', 'yield_sign']
+
+roboflow:
+  workspace: yolo-jesbe
+  project: traffic_signs_detector
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/yolo-jesbe/traffic_signs_detector/dataset/2

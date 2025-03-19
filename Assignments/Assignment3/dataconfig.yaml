@@ -1,0 +1,34 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 11
+names: ['bicycle', 'bus', 'car', 'motorcycle', 'no_entry_sign', 'pedestrian', 'stop_sign', 'pedestrian_crossing_sign', 'traffic_light', 'truck', 'yield_sign']
+
+# Custom training configurations for experiments
+train_config:
+  imgsz: 1280                # Increase resolution for small object detection
+  batch: 16                  # Batch size
+  epochs: 30                 # Number of training epochs
+  augmentation:
+    scale: 0.5               # Scaling augmentation factor (you might experiment with a range; here, 0.5 means images are scaled by ±50% of original size)
+    rotation: 15             # Allow rotations of ±15° to simulate tilting/varied camera angles
+    shear: 10                # Apply shear (tilt) of ±10°
+    blur: 2                  # Apply a slight Gaussian blur (kernel size of 2 pixels); adjust based on your needs
+    mosaic: true             # Enable mosaic augmentation to combine multiple images (improves context and multi-scale learning)
+  autoanchor: true           # Enable auto-anchor tuning for better anchor box placement
+
+# Optional: Manual anchor tuning (if you want to override auto-anchor)
+anchor_tuning:
+  enabled: false             # Set to true to use these anchors instead of auto-anchor
+  anchors:
+    - [10, 13, 16, 30, 33, 23]   # Anchors for small objects
+    - [30, 61, 62, 45, 59, 119]   # Anchors for medium objects
+    - [116, 90, 156, 198, 373, 326] # Anchors for large objects
+
+roboflow:
+  workspace: yolo-jesbe
+  project: traffic_signs_detector
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/yolo-jesbe/traffic_signs_detector/dataset/2
